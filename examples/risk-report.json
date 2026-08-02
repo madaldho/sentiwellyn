@@ -1,0 +1,25 @@
+{
+  "mode": "demo",
+  "generatedFrom": "synthetic DataHub-like metadata fixtures",
+  "entity": {
+    "urn": "urn:li:dataset:(example,analytics.customer_orders,PROD)",
+    "name": "analytics.customer_orders",
+    "domain": "Commerce"
+  },
+  "health": 61,
+  "riskEstimate": 82,
+  "severity": "high",
+  "reason": "Missing owner on a highly-used dataset",
+  "downstreamImpact": [
+    "3 downstream dashboards"
+  ],
+  "evidence": {
+    "citationId": "CIT-demo-001",
+    "source": "lineage",
+    "facts": [
+      "3 downstream assets depend on this entity"
+    ],
+    "confidence": 0.84
+  },
+  "status": "needs_review"
+}

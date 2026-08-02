@@ -1,0 +1,17 @@
+{
+  "proposalId": "P-analytics-customer_orders",
+  "entityUrn": "urn:li:dataset:(example,analytics.customer_orders,PROD)",
+  "status": "awaiting_approval",
+  "operation": "add_owner",
+  "before": {
+    "owner": null
+  },
+  "proposed": {
+    "owner": "owner inferred from verified lineage evidence"
+  },
+  "reason": "The dataset is heavily used and has no owner",
+  "citationId": "CIT-demo-001",
+  "confidence": 0.84,
+  "writesPerformed": false,
+  "verification": null
+}

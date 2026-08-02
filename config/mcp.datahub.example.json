@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "datahub": {
+      "command": "uvx",
+      "args": ["mcp-server-datahub@latest"],
+      "env": {
+        "DATAHUB_GMS_URL": "https://your-datahub-instance.example",
+        "DATAHUB_GMS_TOKEN": "replace-locally-never-commit",
+        "TOOLS_IS_MUTATION_ENABLED": "false",
+        "SAVE_DOCUMENT_TOOL_ENABLED": "true",
+        "SAVE_DOCUMENT_RESTRICT_UPDATES": "true"
+      }
+    }
+  }
+}

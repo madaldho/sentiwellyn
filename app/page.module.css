@@ -1,0 +1,10 @@
+.modal-backdrop { position: fixed; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(2, 6, 23, .76); z-index: 4; }
+.modal { width: min(560px, 100%); padding: 26px; box-shadow: 0 24px 80px #0009; }
+.modal h2 { margin: 8px 0; font-size: 24px; }
+.diff { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 18px; margin: 22px 0; border: 1px solid var(--border); border-radius: 9px; background: rgba(8, 13, 24, .5); }
+.diff div:not(.arrow) { display: grid; gap: 7px; }
+.diff span { color: var(--muted); font: 600 10px 'JetBrains Mono', monospace; letter-spacing: .08em; }
+.diff strong { font-size: 13px; }
+.arrow { color: var(--blue); font-size: 22px; }
+.evidence-box { padding: 14px; margin-bottom: 22px; border-left: 3px solid var(--blue); background: #13223a; color: #dbeafe; line-height: 1.6; font-size: 13px; }
+.evidence-box span { color: var(--muted); font-size: 12px; }

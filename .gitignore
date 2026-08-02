@@ -1,0 +1,43 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+coverage/
+dist/
+tsconfig.tsbuildinfo
+graphify-out/
+
+# Local runtime state
+.data/
+*.db
+*.sqlite
+
+# Python fallback, if added later
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# InsForge local linkage and transient agent runtime state
+.insforge
+.agent
+.ski/
+
+# Commit official DataHub Skills for hackathon review; ignore other agent-local state
+!.agents/
+!.agents/skills/
+!.agents/skills/**
+.augment
+.claude
+.cline
+.github/copilot*
+.kilocode
+.qoder
+.qwen
+.roo
+.trae
+.windsurf
