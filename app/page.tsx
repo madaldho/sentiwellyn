@@ -93,6 +93,28 @@ export default function Home() {
     });
   }, [query, report.risks, severityFilter, statusFilter]);
 
+  // The production demo should immediately reflect the live DataHub graph when
+  // cloud mode is configured; fixture data is only the fallback state before the
+  // first server read returns.
+  useEffect(() => {
+    let active = true;
+    async function hydrateFromServer() {
+      try {
+        const response = await fetch("/api/scan");
+        const body = await response.json();
+        if (!active || !response.ok) return;
+        setReport(body as ScanReport);
+        setWorkspace(body.mode === "cloud"
+          ? { id: "live", mark: "DH", name: "DataHub OSS Live", detail: "VPS · verified GraphQL read" }
+          : workspaces[0]);
+      } catch {
+        // Keep the fixture fallback visible if the live server is unavailable.
+      }
+    }
+    void hydrateFromServer();
+    return () => { active = false; };
+  }, []);
+
   // Escape closes the proposal dialog.
   useEffect(() => {
     if (!selected) return;
@@ -331,6 +353,12 @@ function OverviewView({
   report, urgentEntity, highRisk, filteredRisks, query, setQuery, severityFilter, setSeverityFilter,
   statusFilter, setStatusFilter, hasFilters, runScan, loading, propose, goto, openChat,
 }: OverviewProps) {
+  const riskDistribution = useMemo(() => {
+    const counts: Record<Severity, number> = { critical: 0, high: 0, medium: 0, low: 0 };
+    for (const risk of report.risks) counts[risk.severity] += 1;
+    return Object.entries(counts) as [Severity, number][];
+  }, [report.risks]);
+
   return <>
     <section className="hero">
       <div>
@@ -432,16 +460,16 @@ function OverviewView({
           </div>
         </div>
         <div className="risk-list">
-          {([["critical", 8], ["high", 19], ["medium", 42], ["low", 59]] as [Severity, number][]).map(([severity, value]) => (
+          {riskDistribution.map(([severity, value]) => (
             <button className="risk-row" key={severity} onClick={() => {
               setSeverityFilter(severity);
               document.getElementById("risk-queue")?.scrollIntoView({ behavior: "smooth" });
             }}>
               <div className="risk-label">
                 <span className="risk-name">{severityLabels[severity]}</span>
-                <span className="risk-meta">{value} · {Math.round(value / report.scanned * 100)}%</span>
+                <span className="risk-meta">{value} · {report.scanned ? Math.round(value / report.scanned * 100) : 0}%</span>
               </div>
-              <div className="progress"><span style={{ width: `${value / 64 * 100}%`, background: severityColor(severity) }} /></div>
+              <div className="progress"><span style={{ width: `${report.scanned ? value / report.scanned * 100 : 0}%`, background: severityColor(severity) }} /></div>
             </button>
           ))}
         </div>
