@@ -2,8 +2,8 @@
 
 Evidence-backed data reliability agent for DataHub.
 
-**Live demo:** https://6j4biq89.insforge.site  
-**VPS live backend:** http://194.113.74.21:3000  
+**Public demo (fixture mode):** https://6j4biq89.insforge.site
+**VPS live backend (internal until provider firewall is opened):** `http://127.0.0.1:3000` on the hackathon VPS
 **Source:** https://github.com/madaldho/sentiwellyn  
 **Challenge:** Agents That Do Real Work  
 **License:** Apache-2.0
@@ -220,13 +220,14 @@ npx @insforge/cli deployments deploy .
 
 Production URLs:
 
-- InsForge: https://6j4biq89.insforge.site
-- VPS app: http://194.113.74.21:3000
-- VPS DataHub frontend: http://194.113.74.21:9002
+- Public demo (fixture mode): https://6j4biq89.insforge.site
+- VPS app: `http://127.0.0.1:3000` on the VPS; expose only the app through a provider firewall rule/reverse proxy for public judging
+- VPS DataHub frontend: `http://127.0.0.1:9002` on the VPS; keep GMS/frontend private rather than exposing them publicly
 
 ## Hackathon submission checklist
 
-- [x] Working public URL
+- [x] Working public demo URL (explicitly labeled `DEMO · FIXTURES`)
+- [ ] Public URL for the live DataHub-backed deployment reachable by judges
 - [x] Apache-2.0 `LICENSE`
 - [x] English project description and setup instructions
 - [x] Sample outputs
